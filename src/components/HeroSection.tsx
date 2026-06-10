@@ -29,14 +29,14 @@ export default function HeroSection({ content }: { content: HeroContent }) {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-12 pb-24 lg:py-24 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-12 pb-24 lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Text side — each element fades up on mount with staggered delays */}
         <div className="order-2 lg:order-1 flex flex-col gap-8">
           <div>
             <p className="uppercase tracking-widest text-sm mb-6 font-light text-ring animate-fade-up [animation-delay:100ms]">
               {label}
             </p>
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-tight text-hero-foreground font-serif animate-fade-up [animation-delay:300ms]">
+            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-light leading-tight text-hero-foreground font-serif animate-fade-up [animation-delay:300ms]">
               {headingLine1}
               <br />
               <em className="italic font-normal text-ring">{headingLine2}</em>
@@ -67,7 +67,7 @@ export default function HeroSection({ content }: { content: HeroContent }) {
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-scale [animation-delay:200ms]">
           <div className="relative">
             <div
-              className="absolute -inset-4 rounded-full opacity-20"
+              className="absolute -inset-2 lg:-inset-4 rounded-full opacity-20"
               style={{
                 background: `conic-gradient(from 0deg, var(--color-primary), var(--color-ring), var(--color-primary))`,
               }}
