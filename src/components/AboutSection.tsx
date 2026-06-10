@@ -18,7 +18,7 @@ export default function AboutSection({ content }: { content: AboutContent }) {
   const ctaHref = `mailto:${cta.email}?subject=${encodeURIComponent(cta.subject)}`;
 
   return (
-    <section className="relative pb-32 overflow-hidden bg-background -mt-px">
+    <section className="relative pb-16 lg:pb-32 overflow-hidden bg-background -mt-px">
       {/* Decorative glow */}
       <div
         className="absolute top-0 right-0 w-1/2 h-full opacity-15 pointer-events-none"
@@ -35,7 +35,7 @@ export default function AboutSection({ content }: { content: AboutContent }) {
           {/* Decorative leaf */}
           <div
             className={cn(
-              "flex items-center gap-4 mb-12",
+              "flex items-center gap-4 mb-6 lg:mb-12",
               !inView ? "opacity-0" : "animate-fade-in [animation-delay:0ms]",
             )}
           >
@@ -57,7 +57,7 @@ export default function AboutSection({ content }: { content: AboutContent }) {
             <div className="w-12 h-px bg-primary" />
           </div>
 
-          <div className="space-y-6 text-xl lg:text-2xl font-light leading-relaxed text-foreground font-serif">
+          <div className="space-y-4 lg:space-y-6 text-xl lg:text-2xl font-light leading-relaxed text-foreground font-serif">
             {paragraphs.map((para, i) => (
               <p
                 key={i}
@@ -75,7 +75,7 @@ export default function AboutSection({ content }: { content: AboutContent }) {
 
           <div
             className={cn(
-              "mt-12",
+              "mt-8 lg:mt-12",
               !inView ? "opacity-0" : "animate-fade-in [animation-delay:1340ms]",
             )}
           >

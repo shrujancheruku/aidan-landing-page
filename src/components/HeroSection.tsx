@@ -17,7 +17,7 @@ export default function HeroSection({ content }: { content: HeroContent }) {
   const ctaHref = `mailto:${cta.email}?subject=${encodeURIComponent(cta.subject)}`;
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-hero">
+    <section className="relative min-h-[85vh] lg:min-h-screen flex items-center overflow-hidden bg-hero">
       {/* Decorative glows */}
       <div
         className="absolute inset-0 opacity-15 pointer-events-none"
@@ -29,11 +29,11 @@ export default function HeroSection({ content }: { content: HeroContent }) {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-12 pb-24 lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-8 pb-16 lg:py-24 grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
         {/* Text side — each element fades up on mount with staggered delays */}
-        <div className="order-2 lg:order-1 flex flex-col gap-8">
+        <div className="order-2 lg:order-1 flex flex-col gap-5 lg:gap-8">
           <div>
-            <p className="uppercase tracking-widest text-sm mb-6 font-light text-ring animate-fade-up [animation-delay:100ms]">
+            <p className="uppercase tracking-widest text-sm mb-3 lg:mb-6 font-light text-ring animate-fade-up [animation-delay:100ms]">
               {label}
             </p>
             <h1 className="text-4xl lg:text-6xl xl:text-7xl font-light leading-tight text-hero-foreground font-serif animate-fade-up [animation-delay:300ms]">

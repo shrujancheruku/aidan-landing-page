@@ -66,7 +66,7 @@ export default function TestimonialsSection({
   const { badge, sectionTitle, carouselTitle, videos, reviews } = content;
 
   return (
-    <section className="relative pt-12 pb-32 overflow-hidden bg-card">
+    <section className="relative pt-6 pb-16 lg:pt-12 lg:pb-32 overflow-hidden bg-card">
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
@@ -76,7 +76,7 @@ export default function TestimonialsSection({
 
       <div className="relative z-10 container mx-auto px-6 lg:px-16">
         {/* Heading */}
-        <div ref={headingRef} className="text-center mb-20">
+        <div ref={headingRef} className="text-center mb-10 lg:mb-20">
           <div
             className={cn(
               "flex items-center justify-center gap-4 mb-6",
@@ -99,7 +99,7 @@ export default function TestimonialsSection({
         {/* Video cards — staggered per index */}
         <div
           ref={videosRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 lg:mb-24"
         >
           {videos.map((video, index) => (
             <div
@@ -181,7 +181,7 @@ export default function TestimonialsSection({
         </div>
       </div>
 
-      <div className="relative mt-24 pt-12 border-t border-primary/20 text-center">
+      <div className="relative mt-12 pt-8 lg:mt-24 lg:pt-12 border-t border-primary/20 text-center">
         <p className="text-sm font-light text-muted-foreground">
           © {new Date().getFullYear()} Aidan Belizaire ·{" "}
           <a
