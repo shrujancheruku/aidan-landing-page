@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
-import { cn } from "@/lib/utils";
 import type { HeroContent } from "@/types/content";
 
 export default function HeroSection({ content }: { content: HeroContent }) {
-  const [waveRef, waveInView] = useInView<HTMLDivElement>(0.8);
   const {
     label,
     headingLine1,
@@ -94,14 +92,13 @@ export default function HeroSection({ content }: { content: HeroContent }) {
 
       {/* Wave — 12px wider on each side so translateX doesn't expose gaps */}
       <div
-        ref={waveRef}
         className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none"
       >
         <svg
           viewBox="0 0 1440 120"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          className={cn(waveInView && "animate-wave-ripple")}
+          className="animate-wave-ripple"
           style={{
             height: "120px",
             display: "block",
