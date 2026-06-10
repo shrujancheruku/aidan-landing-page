@@ -10,6 +10,6 @@ paragraphs:
     text: "If that sounds like where you are right now (or like someone you know), I'd love to have a conversation."
 cta:
   text: "Book a Free Call"
-  email: "hello@aidenbelizaire.com"
-  subject: "Free Coaching Intro Call"
+  email: "hello@aidanbelizaire.com"
+  subject: "Tell me more about coaching"
 ---
