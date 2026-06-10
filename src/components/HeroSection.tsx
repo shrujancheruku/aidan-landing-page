@@ -29,7 +29,7 @@ export default function HeroSection({ content }: { content: HeroContent }) {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-8 pb-16 lg:py-24 grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
+      <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-8 pb-32 lg:py-24 grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
         {/* Text side — each element fades up on mount with staggered delays */}
         <div className="order-2 lg:order-1 flex flex-col gap-5 lg:gap-8">
           <div>
