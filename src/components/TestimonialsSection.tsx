@@ -21,7 +21,7 @@ function VideoPlaceholder({ name, role, src }: { name: string; role: string; src
         <video
           ref={videoRef}
           src={`${import.meta.env.BASE_URL}/${src}`}
-          className="block max-h-[75vh] w-auto max-w-full"
+          className={`block max-h-[75vh] w-auto max-w-full${!playing ? " pointer-events-none" : ""}`}
           controls={playing}
           playsInline
         />
@@ -33,7 +33,11 @@ function VideoPlaceholder({ name, role, src }: { name: string; role: string; src
                 backgroundImage: `radial-gradient(ellipse at 50% 40%, var(--color-primary) 0%, transparent 70%)`,
               }}
             />
-            <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={handlePlay}>
+            <div
+              className="absolute inset-0 flex items-center justify-center cursor-pointer"
+              onClick={handlePlay}
+              onTouchEnd={(e) => { e.preventDefault(); handlePlay(); }}
+            >
               <div className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110 bg-hero-foreground/15 backdrop-blur-sm border-2 border-hero-foreground/40">
                 <svg width="24" height="24" viewBox="0 0 24 24" className="fill-hero-foreground opacity-90">
                   <path d="M8 5L19 12L8 19V5Z" />
