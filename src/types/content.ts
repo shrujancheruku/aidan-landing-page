@@ -26,14 +26,15 @@ export interface AboutContent {
 
 export interface TestimonialVideo {
   name: string;
-  title: string;
-  quote: string;
+  role: string;
+  src?: string;
 }
 
 export interface ClientReview {
   name: string;
   role: string;
   review: string;
+  photo?: string;
 }
 
 export interface TestimonialsCta {

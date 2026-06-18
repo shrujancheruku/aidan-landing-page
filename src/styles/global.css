@@ -73,6 +73,8 @@
     --color-destructive-foreground: var(--destructive-foreground);
     --color-hero: var(--hero);
     --color-hero-foreground: var(--hero-foreground);
+    --color-cta: var(--cta);
+    --color-cta-foreground: var(--cta-foreground);
 }
 
 :root {
@@ -111,6 +113,8 @@
     --destructive-foreground: oklch(0.9790 0.0082 91.4818);
     --hero: oklch(0.38 0.045 130);
     --hero-foreground: oklch(0.9882 0.0069 88.6415);
+    --cta: oklch(66.22% 0.108 43.45);
+    --cta-foreground: oklch(0.98 0.005 43);
     --font-sans: Merriweather, serif;
     --font-serif: Source Serif 4, serif;
     --font-mono: JetBrains Mono, monospace;
@@ -168,6 +172,8 @@
     --destructive-foreground: oklch(0.9357 0.0201 84.5907);
     --hero: oklch(0.26 0.038 130);
     --hero-foreground: oklch(0.9882 0.0069 88.6415);
+    --cta: oklch(66.22% 0.108 43.45);
+    --cta-foreground: oklch(0.98 0.005 43);
     --radius: 0.425rem;
     --font-sans: Merriweather, serif;
     --font-serif: Source Serif 4, serif;

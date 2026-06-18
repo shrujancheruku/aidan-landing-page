@@ -1,10 +1,4 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,7 +6,50 @@ import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import type { TestimonialsContent } from "@/types/content";
 
-function VideoPlaceholder({ name, title }: { name: string; title: string }) {
+function VideoPlaceholder({ name, role, src }: { name: string; role: string; src?: string }) {
+  const [playing, setPlaying] = React.useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  const handlePlay = () => {
+    setPlaying(true);
+    videoRef.current?.play();
+  };
+
+  if (src) {
+    return (
+      <div className="relative w-fit max-w-full mx-auto rounded-xl overflow-hidden group bg-hero">
+        <video
+          ref={videoRef}
+          src={`${import.meta.env.BASE_URL}${src}`}
+          className="block max-h-[75vh] w-auto max-w-full"
+          controls={playing}
+          playsInline
+        />
+        {!playing && (
+          <>
+            <div
+              className="absolute inset-0 opacity-40 pointer-events-none"
+              style={{
+                backgroundImage: `radial-gradient(ellipse at 50% 40%, var(--color-primary) 0%, transparent 70%)`,
+              }}
+            />
+            <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={handlePlay}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110 bg-hero-foreground/15 backdrop-blur-sm border-2 border-hero-foreground/40">
+                <svg width="24" height="24" viewBox="0 0 24 24" className="fill-hero-foreground opacity-90">
+                  <path d="M8 5L19 12L8 19V5Z" />
+                </svg>
+              </div>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 px-5 py-4 bg-gradient-to-t from-black/70 to-transparent pointer-events-none">
+              <p className="text-base font-normal text-hero-foreground font-serif leading-snug">{name}</p>
+              {role && <p className="text-sm font-light text-hero-foreground/80 mt-0.5">{role}</p>}
+            </div>
+          </>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full aspect-video rounded-xl overflow-hidden group cursor-pointer bg-hero">
       <div
@@ -22,35 +59,33 @@ function VideoPlaceholder({ name, title }: { name: string; title: string }) {
         }}
       />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110 bg-hero-foreground/15 backdrop-blur-sm border-2 border-hero-foreground/40">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            className="fill-hero-foreground opacity-90"
-          >
+        <div className="w-16 h-16 rounded-full flex items-center justify-center bg-hero-foreground/15 backdrop-blur-sm border-2 border-hero-foreground/40">
+          <svg width="24" height="24" viewBox="0 0 24 24" className="fill-hero-foreground opacity-90">
             <path d="M8 5L19 12L8 19V5Z" />
           </svg>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-        <p className="text-sm font-light text-hero-foreground font-serif">
-          {name}
-        </p>
-        <p className="text-xs text-hero-foreground/70">{title}</p>
+      <div className="absolute bottom-0 left-0 right-0 px-5 py-4 bg-gradient-to-t from-black/70 to-transparent">
+        <p className="text-base font-normal text-hero-foreground font-serif leading-snug">{name}</p>
+        {role && <p className="text-sm font-light text-hero-foreground/80 mt-0.5">{role}</p>}
       </div>
     </div>
   );
 }
 
-function AvatarPlaceholder({ name }: { name: string }) {
-  const initials = name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
+function AvatarPlaceholder({ name, photo }: { name: string; photo?: string }) {
+  const initials = name.split(" ").map((n) => n[0]).join("").toUpperCase();
+  if (photo) {
+    return (
+      <img
+        src={`${import.meta.env.BASE_URL}${photo}`}
+        alt={name}
+        className="w-24 h-24 rounded-full object-cover ring-4 ring-primary/20"
+      />
+    );
+  }
   return (
-    <div className="w-16 h-16 rounded-full flex items-center justify-center text-lg font-light shrink-0 bg-primary/30 text-hero font-serif">
+    <div className="w-24 h-24 rounded-full flex items-center justify-center text-2xl font-light bg-primary/30 text-hero font-serif ring-4 ring-primary/20">
       {initials}
     </div>
   );
@@ -63,7 +98,7 @@ export default function TestimonialsSection({
 }) {
   const [headingRef, headingInView] = useInView<HTMLDivElement>(0.3);
   const [videosRef, videosInView] = useInView<HTMLDivElement>(0.1);
-  const [carouselRef, carouselInView] = useInView<HTMLDivElement>(0.1);
+  const [reviewsRef, reviewsInView] = useInView<HTMLDivElement>(0.1);
   const [ctaRef, ctaInView] = useInView<HTMLDivElement>(0.3);
   const { badge, videos, reviews, cta } = content;
   const ctaHref = `mailto:${cta.email}?subject=${encodeURIComponent(cta.subject)}`;
@@ -99,10 +134,10 @@ export default function TestimonialsSection({
           </div>
         </div>
 
-        {/* Video cards — staggered per index */}
+        {/* Video cards */}
         <div
           ref={videosRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 lg:mb-24"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 lg:mb-24"
         >
           {videos.map((video, index) => (
             <div
@@ -111,76 +146,44 @@ export default function TestimonialsSection({
                 "flex flex-col gap-4",
                 !videosInView ? "opacity-0" : "animate-fade-up",
               )}
-              style={
-                videosInView
-                  ? { animationDelay: `${index * 160}ms` }
-                  : undefined
-              }
+              style={videosInView ? { animationDelay: `${index * 160}ms` } : undefined}
             >
-              <VideoPlaceholder name={video.name} title={video.title} />
-              <p className="text-sm font-light leading-relaxed italic px-1 text-muted-foreground font-serif">
-                "{video.quote}"
-              </p>
+              <VideoPlaceholder name={video.name} role={video.role} src={video.src} />
             </div>
           ))}
         </div>
 
-        {/* Carousel */}
-        <div ref={carouselRef}>
-          <div
-            className={cn(
-              !carouselInView
-                ? "opacity-0"
-                : "animate-fade-up [animation-delay:180ms]",
-            )}
-          >
-            <Carousel opts={{ align: "start", loop: true }} className="w-full">
-              <CarouselContent className="-ml-4">
-                {reviews.map((client) => (
-                  <CarouselItem
-                    key={client.name}
-                    className="pl-4 md:basis-1/2 lg:basis-1/3"
-                  >
-                    <Card className="h-full border-0 bg-sidebar-accent">
-                      <CardContent className="p-8 flex flex-col gap-6 h-full">
-                        <div className="flex items-center gap-4">
-                          <AvatarPlaceholder name={client.name} />
-                          <div>
-                            <p className="font-normal text-sm text-hero font-serif">
-                              {client.name}
-                            </p>
-                            <p className="text-xs font-light text-muted-foreground">
-                              {client.role}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex gap-1">
-                          {[...Array(5)].map((_, i) => (
-                            <svg
-                              key={i}
-                              width="14"
-                              height="14"
-                              viewBox="0 0 24 24"
-                              className="fill-primary"
-                            >
-                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <p className="text-sm font-light leading-relaxed flex-1 italic text-foreground font-serif">
-                          "{client.review}"
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="flex justify-center gap-4 mt-8">
-                <CarouselPrevious className="relative static translate-y-0 left-auto top-auto rounded-full w-10 h-10 bg-primary/15 border border-primary/40 text-hero hover:bg-primary/25" />
-                <CarouselNext className="relative static translate-y-0 right-auto top-auto rounded-full w-10 h-10 bg-primary/15 border border-primary/40 text-hero hover:bg-primary/25" />
-              </div>
-            </Carousel>
-          </div>
+        {/* Review cards */}
+        <div
+          ref={reviewsRef}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
+          {reviews.map((client, index) => (
+            <div
+              key={client.name}
+              className={cn(
+                !reviewsInView ? "opacity-0" : "animate-fade-up",
+              )}
+              style={reviewsInView ? { animationDelay: `${index * 120}ms` } : undefined}
+            >
+              <Card className="h-full border-0 bg-sidebar-accent">
+                <CardContent className="p-8 flex flex-col items-center gap-4 text-center">
+                  <AvatarPlaceholder name={client.name} photo={client.photo} />
+                  <div>
+                    <p className="font-normal text-base text-hero font-serif">
+                      {client.name}
+                    </p>
+                    <p className="text-sm font-light text-muted-foreground mt-1">
+                      {client.role}
+                    </p>
+                  </div>
+                  <p className="text-sm font-light leading-relaxed italic text-foreground font-serif">
+                    "{client.review}"
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -197,7 +200,7 @@ export default function TestimonialsSection({
           <a href={ctaHref}>
             <Button
               size="lg"
-              className="text-base px-8 py-6 rounded-full font-light transition-all duration-300 hover:scale-105"
+              className="text-base px-8 py-6 rounded-full font-light bg-cta text-cta-foreground hover:bg-cta/90 transition-all duration-300 hover:scale-105"
             >
               {cta.text}
             </Button>

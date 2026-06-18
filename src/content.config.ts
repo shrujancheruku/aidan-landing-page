@@ -40,8 +40,8 @@ const testimonials = defineCollection({
     videos: z.array(
       z.object({
         name: z.string(),
-        title: z.string(),
-        quote: z.string(),
+        role: z.string(),
+        src: z.string().optional(),
       }),
     ),
     reviews: z.array(
@@ -49,6 +49,7 @@ const testimonials = defineCollection({
         name: z.string(),
         role: z.string(),
         review: z.string(),
+        photo: z.string().optional(),
       }),
     ),
     cta: z.object({

@@ -82,7 +82,7 @@ export default function AboutSection({ content }: { content: AboutContent }) {
             <a href={ctaHref}>
               <Button
                 size="lg"
-                className="text-base px-8 py-6 rounded-full font-light bg-hero text-hero-foreground hover:bg-hero/90 transition-all duration-300 hover:scale-105"
+                className="text-base px-8 py-6 rounded-full font-light bg-cta text-cta-foreground hover:bg-cta/90 transition-all duration-300 hover:scale-105"
               >
                 {cta.text}
               </Button>

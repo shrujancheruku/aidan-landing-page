@@ -5,7 +5,7 @@ paragraphs:
   - variant: "emphasis"
     text: "That's exactly what I help people with."
   - variant: "body"
-    text: "I work with people in their 30s and 40s to figure out what's really keeping them stuck — and how to move through it — so they can move forward feeling clear, confident, and without second-guessing themselves."
+    text: "I help people in their 30s and 40s figure out what's really keeping them stuck, so they can move forward feeling clear, confident, and without second-guessing themselves."
   - variant: "italic"
     text: "If that sounds like where you are right now (or like someone you know), I'd love to have a conversation."
 cta:
