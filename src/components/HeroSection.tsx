@@ -41,7 +41,7 @@ export default function HeroSection({ content }: { content: HeroContent }) {
               <span className="block animate-fade-up" style={{ animationDelay: "150ms" }}>
                 {headingLine1}
               </span>
-              <span className="block animate-fade-up" style={{ animationDelay: "300ms" }}>
+              <span className="block animate-fade-up" style={{ animationDelay: "300ms", paddingLeft: "0.12em" }}>
                 <em className="italic font-normal text-ring">{headingLine2}</em>
               </span>
               <span className="block animate-fade-up" style={{ animationDelay: "450ms" }}>
