@@ -28,6 +28,7 @@ export interface TestimonialVideo {
   name: string;
   role: string;
   src?: string;
+  thumbnail?: string;
 }
 
 export interface ClientReview {

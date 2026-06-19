@@ -42,6 +42,7 @@ const testimonials = defineCollection({
         name: z.string(),
         role: z.string(),
         src: z.string().optional(),
+        thumbnail: z.string().optional(),
       }),
     ),
     reviews: z.array(

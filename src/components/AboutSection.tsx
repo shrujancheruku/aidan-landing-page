@@ -1,13 +1,27 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import type { AboutContent } from "@/types/content";
 
-const DELAYS = [100, 280, 460, 640];
+const DELAYS = [100, 240, 380, 500, 620, 740];
+
+function renderInlineText(text: string): React.ReactNode {
+  const parts = text.split(/(<u>[\s\S]*?<\/u>|<em>[\s\S]*?<\/em>)/);
+  return parts.map((part, i) => {
+    if (part.startsWith("<u>") && part.endsWith("</u>")) {
+      return <span key={i} className="underline underline-offset-4">{part.slice(3, -4)}</span>;
+    }
+    if (part.startsWith("<em>") && part.endsWith("</em>")) {
+      return <em key={i}>{part.slice(4, -5)}</em>;
+    }
+    return part || null;
+  });
+}
 
 const variantClass: Record<string, string> = {
-  emphasis: "text-2xl lg:text-3xl font-normal text-hero",
-  italic: "text-lg lg:text-xl italic text-muted-foreground",
+  emphasis: "font-normal text-hero",
+  italic: "italic text-muted-foreground",
   body: "",
 };
 
@@ -68,15 +82,15 @@ export default function AboutSection({ content }: { content: AboutContent }) {
                     : `animate-fade-up [animation-delay:${DELAYS[i] ?? i * 180}ms]`,
                 )}
               >
-                {para.text}
+                {renderInlineText(para.text)}
               </p>
             ))}
           </div>
 
           <div
             className={cn(
-              "mt-8 lg:mt-12",
-              !inView ? "opacity-0" : "animate-fade-in [animation-delay:1340ms]",
+              "mt-8 lg:mt-12 flex justify-center lg:justify-start",
+              !inView ? "opacity-0" : "animate-fade-in [animation-delay:1500ms]",
             )}
           >
             <a href={ctaHref}>

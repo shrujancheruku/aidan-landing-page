@@ -6,7 +6,7 @@ import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import type { TestimonialsContent } from "@/types/content";
 
-function VideoPlaceholder({ name, role, src }: { name: string; role: string; src?: string }) {
+function VideoPlaceholder({ name, role, src, thumbnail }: { name: string; role: string; src?: string; thumbnail?: string }) {
   const [playing, setPlaying] = React.useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
@@ -21,6 +21,7 @@ function VideoPlaceholder({ name, role, src }: { name: string; role: string; src
         <video
           ref={videoRef}
           src={`${import.meta.env.BASE_URL}/${src}`}
+          poster={thumbnail ? `${import.meta.env.BASE_URL}/${thumbnail}` : undefined}
           className={`block max-h-[75vh] w-auto max-w-full${!playing ? " pointer-events-none" : ""}`}
           controls={playing}
           playsInline
@@ -152,7 +153,7 @@ export default function TestimonialsSection({
               )}
               style={videosInView ? { animationDelay: `${index * 160}ms` } : undefined}
             >
-              <VideoPlaceholder name={video.name} role={video.role} src={video.src} />
+              <VideoPlaceholder name={video.name} role={video.role} src={video.src} thumbnail={video.thumbnail} />
             </div>
           ))}
         </div>
