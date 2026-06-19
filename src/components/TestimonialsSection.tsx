@@ -123,10 +123,9 @@ export default function TestimonialsSection({
           <div
             className={cn(
               "flex items-center justify-center gap-4 mb-6",
-              !headingInView
-                ? "opacity-0"
-                : "animate-fade-in [animation-delay:0ms]",
+              !headingInView ? "opacity-0" : "animate-fade-up",
             )}
+            style={headingInView ? { animationDelay: "0ms" } : undefined}
           >
             <div className="w-16 h-px bg-primary/60" />
             <Badge

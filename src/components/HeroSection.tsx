@@ -71,7 +71,7 @@ export default function HeroSection({ content }: { content: HeroContent }) {
               }}
             />
             <div
-              className="relative w-54 h-54 lg:w-96 lg:h-96 rounded-full overflow-hidden"
+              className="relative w-64 h-64 lg:w-[28rem] lg:h-[28rem] rounded-full overflow-hidden"
               style={{
                 boxShadow: `0 32px 64px oklch(0 0 0 / 0.4), 0 0 0 3px color-mix(in oklch, var(--color-primary) 60%, transparent)`,
               }}

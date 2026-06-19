@@ -6,11 +6,34 @@ import type { AboutContent } from "@/types/content";
 
 const DELAYS = [0, 150, 300, 450, 600, 750];
 
-function renderInlineText(text: string): React.ReactNode {
+function renderInlineText(text: string, inView = false, paragraphDelay = 0): React.ReactNode {
   const parts = text.split(/(<u>[\s\S]*?<\/u>|<em>[\s\S]*?<\/em>)/);
   return parts.map((part, i) => {
     if (part.startsWith("<u>") && part.endsWith("</u>")) {
-      return <span key={i} className="underline underline-offset-4">{part.slice(3, -4)}</span>;
+      const circleDelay = paragraphDelay + 800;
+      return (
+        <span key={i} className="relative inline-block whitespace-nowrap">
+          {part.slice(3, -4)}
+          <svg
+            aria-hidden="true"
+            className="absolute pointer-events-none overflow-visible"
+            style={{ left: "-2px", bottom: "-2px", width: "calc(100% + 4px)", height: "8px" }}
+            viewBox="0 0 100 10"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M 0,6 C 20,4 40,8 60,5 C 78,3 92,7 100,6"
+              fill="none"
+              stroke="var(--color-primary)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeDasharray="200"
+              strokeDashoffset="200"
+              style={inView ? { animation: `draw-stroke 0.6s ease-out ${circleDelay}ms both` } : undefined}
+            />
+          </svg>
+        </span>
+      );
     }
     if (part.startsWith("<em>") && part.endsWith("</em>")) {
       return <em key={i}>{part.slice(4, -5)}</em>;
@@ -55,7 +78,7 @@ export default function AboutSection({ content }: { content: AboutContent }) {
                 )}
                 style={inView ? { animationDelay: `${DELAYS[i] ?? i * 180}ms` } : undefined}
               >
-                {renderInlineText(para.text)}
+                {renderInlineText(para.text, inView, DELAYS[i] ?? i * 180)}
               </p>
             ))}
           </div>
