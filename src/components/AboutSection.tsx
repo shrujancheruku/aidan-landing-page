@@ -4,7 +4,7 @@ import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import type { AboutContent } from "@/types/content";
 
-const DELAYS = [100, 240, 380, 500, 620, 740];
+const DELAYS = [0, 150, 300, 450, 600, 750];
 
 function renderInlineText(text: string): React.ReactNode {
   const parts = text.split(/(<u>[\s\S]*?<\/u>|<em>[\s\S]*?<\/em>)/);
@@ -27,7 +27,6 @@ const variantClass: Record<string, string> = {
 
 export default function AboutSection({ content }: { content: AboutContent }) {
   const [contentRef, inView] = useInView<HTMLDivElement>(0.1);
-  const [waveRef, waveInView] = useInView<HTMLDivElement>(0.8);
   const { paragraphs, cta } = content;
   const ctaHref = `mailto:${cta.email}?subject=${encodeURIComponent(cta.subject)}`;
 
@@ -46,41 +45,15 @@ export default function AboutSection({ content }: { content: AboutContent }) {
         className="relative z-10 container mx-auto px-6 lg:px-16"
       >
         <div className="max-w-3xl mx-auto">
-          {/* Decorative leaf */}
-          <div
-            className={cn(
-              "flex items-center justify-center gap-4 mb-6 lg:mb-12",
-              !inView ? "opacity-0" : "animate-fade-in [animation-delay:0ms]",
-            )}
-          >
-            <div className="w-12 h-px bg-primary" />
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path
-                className="fill-primary"
-                opacity="0.7"
-                d="M12 2C8 2 4 6 4 12C4 16 7 19.5 12 22C17 19.5 20 16 20 12C20 6 16 2 12 2Z"
-              />
-              <path
-                className="stroke-primary"
-                opacity="0.6"
-                d="M12 2L12 22"
-                strokeWidth="0.5"
-                fill="none"
-              />
-            </svg>
-            <div className="w-12 h-px bg-primary" />
-          </div>
-
-          <div className="space-y-4 lg:space-y-6 text-xl lg:text-2xl font-light leading-relaxed text-foreground font-serif">
+<div className="space-y-4 lg:space-y-6 text-xl lg:text-2xl font-light leading-relaxed text-foreground font-serif">
             {paragraphs.map((para, i) => (
               <p
                 key={i}
                 className={cn(
                   variantClass[para.variant],
-                  !inView
-                    ? "opacity-0"
-                    : `animate-fade-up [animation-delay:${DELAYS[i] ?? i * 180}ms]`,
+                  !inView ? "opacity-0" : "animate-fade-up",
                 )}
+                style={inView ? { animationDelay: `${DELAYS[i] ?? i * 180}ms` } : undefined}
               >
                 {renderInlineText(para.text)}
               </p>
@@ -106,15 +79,11 @@ export default function AboutSection({ content }: { content: AboutContent }) {
       </div>
 
       {/* Wave */}
-      <div
-        ref={waveRef}
-        className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none"
-      >
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
         <svg
           viewBox="0 0 1440 120"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          className={cn(waveInView && "animate-wave-ripple")}
           style={{
             height: "120px",
             display: "block",
