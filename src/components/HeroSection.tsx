@@ -28,28 +28,66 @@ export default function HeroSection({ content }: { content: HeroContent }) {
       />
 
       <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-8 pb-32 lg:py-24 grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
-        {/* Text side — each element fades up on mount with staggered delays */}
+        {/* Text side */}
         <div className="order-2 lg:order-1 flex flex-col gap-5 lg:gap-8">
           <div>
-            <p className="uppercase tracking-widest text-sm mb-6 font-light text-ring animate-fade-up [animation-delay:100ms] text-center lg:text-left">
+            <p
+              className="uppercase tracking-widest text-sm mb-6 font-light text-ring animate-fade-up text-center lg:text-left"
+              style={{ animationDelay: "0ms" }}
+            >
               {label}
             </p>
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-tight text-hero-foreground font-serif animate-fade-up [animation-delay:300ms]">
-              {headingLine1}
-              <br />
-              <em className="italic font-normal text-ring">{headingLine2}</em>
-              <br />
-              {headingLine3}
-              <br />
-              {headingLine4}
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-tight text-hero-foreground font-serif">
+              <span className="block animate-fade-up" style={{ animationDelay: "150ms" }}>
+                {headingLine1}
+              </span>
+              <span className="block" style={{ lineHeight: "inherit" }}>
+                <svg
+                  role="img"
+                  aria-label={headingLine2}
+                  className="overflow-visible"
+                  style={{ display: "block", width: "100%", height: "1.25em", fontSize: "inherit" }}
+                >
+                  <text
+                    x="0"
+                    y="0.88em"
+                    style={{
+                      fontFamily: "Source Serif 4, serif",
+                      fontStyle: "italic",
+                      fontWeight: 400,
+                      fontSize: "inherit",
+                      fill: "var(--color-ring)",
+                      fillOpacity: 0,
+                      stroke: "var(--color-ring)",
+                      strokeWidth: 0.8,
+                      strokeDasharray: 5000,
+                      strokeDashoffset: 5000,
+                      animation: "trace-text 0.6s ease-in-out 1500ms both",
+                    }}
+                  >
+                    {headingLine2}
+                  </text>
+                </svg>
+              </span>
+              <span className="block animate-fade-up" style={{ animationDelay: "450ms" }}>
+                {headingLine3}
+                <br />
+                {headingLine4}
+              </span>
             </h1>
           </div>
 
-          <p className="text-lg lg:text-xl font-light leading-relaxed max-w-md text-hero-foreground/80 animate-fade-up [animation-delay:500ms]">
+          <p
+            className="text-lg lg:text-xl font-light leading-relaxed max-w-md text-hero-foreground/80 animate-fade-up"
+            style={{ animationDelay: "600ms" }}
+          >
             {subtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in [animation-delay:1200ms] items-center lg:items-start">
+          <div
+            className="flex flex-col sm:flex-row gap-4 animate-fade-up items-center lg:items-start"
+            style={{ animationDelay: "750ms" }}
+          >
             <a href={ctaHref}>
               <Button
                 size="lg"
@@ -61,8 +99,11 @@ export default function HeroSection({ content }: { content: HeroContent }) {
           </div>
         </div>
 
-        {/* Photo — fades in and scales up */}
-        <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-scale [animation-delay:200ms]">
+        {/* Photo */}
+        <div
+          className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-scale"
+          style={{ animationDelay: "150ms" }}
+        >
           <div className="relative">
             <div
               className="absolute -inset-2 lg:-inset-4 rounded-full opacity-20"
@@ -96,11 +137,7 @@ export default function HeroSection({ content }: { content: HeroContent }) {
           viewBox="0 0 1440 120"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          style={{
-            height: "120px",
-            display: "block",
-            width: "100%",
-          }}
+          style={{ height: "120px", display: "block", width: "100%" }}
         >
           <path
             className="fill-background"

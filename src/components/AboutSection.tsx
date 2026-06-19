@@ -22,7 +22,7 @@ function renderInlineText(text: string, inView = false, paragraphDelay = 0): Rea
             preserveAspectRatio="none"
           >
             <path
-              d="M 0,6 C 20,4 40,8 60,5 C 78,3 92,7 100,6"
+              d="M 0,7 C 9,3 19,9 33,5 C 47,2 55,8 70,6 C 81,4 94,8 100,5"
               fill="none"
               stroke="var(--color-primary)"
               strokeWidth="2.5"
