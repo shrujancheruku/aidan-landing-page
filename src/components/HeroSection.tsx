@@ -41,33 +41,8 @@ export default function HeroSection({ content }: { content: HeroContent }) {
               <span className="block animate-fade-up" style={{ animationDelay: "150ms" }}>
                 {headingLine1}
               </span>
-              <span className="block" style={{ lineHeight: "inherit" }}>
-                <svg
-                  role="img"
-                  aria-label={headingLine2}
-                  className="overflow-visible"
-                  style={{ display: "block", width: "100%", height: "1.25em", fontSize: "inherit" }}
-                >
-                  <text
-                    x="0"
-                    y="0.88em"
-                    style={{
-                      fontFamily: "Source Serif 4, serif",
-                      fontStyle: "italic",
-                      fontWeight: 400,
-                      fontSize: "inherit",
-                      fill: "var(--color-ring)",
-                      fillOpacity: 0,
-                      stroke: "var(--color-ring)",
-                      strokeWidth: 0.8,
-                      strokeDasharray: 5000,
-                      strokeDashoffset: 5000,
-                      animation: "trace-text 0.6s ease-in-out 1500ms both",
-                    }}
-                  >
-                    {headingLine2}
-                  </text>
-                </svg>
+              <span className="block animate-fade-up" style={{ animationDelay: "300ms" }}>
+                <em className="italic font-normal text-ring">{headingLine2}</em>
               </span>
               <span className="block animate-fade-up" style={{ animationDelay: "450ms" }}>
                 {headingLine3}

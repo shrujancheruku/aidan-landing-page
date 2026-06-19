@@ -232,12 +232,6 @@
 }
 
 
-@keyframes trace-text {
-  0%   { stroke-dashoffset: 5000; fill-opacity: 0; }
-  83%  { stroke-dashoffset: 0;    fill-opacity: 0; }
-  100% { stroke-dashoffset: 0;    fill-opacity: 1; }
-}
-
 @keyframes draw-stroke {
   from { stroke-dashoffset: 200; }
   to   { stroke-dashoffset: 0; }

@@ -7,7 +7,7 @@ import type { AboutContent } from "@/types/content";
 const DELAYS = [0, 150, 300, 450, 600, 750];
 
 function renderInlineText(text: string, inView = false, paragraphDelay = 0): React.ReactNode {
-  const parts = text.split(/(<u>[\s\S]*?<\/u>|<em>[\s\S]*?<\/em>)/);
+  const parts = text.split(/(<u>[\s\S]*?<\/u>|<em>[\s\S]*?<\/em>|<strong>[\s\S]*?<\/strong>)/);
   return parts.map((part, i) => {
     if (part.startsWith("<u>") && part.endsWith("</u>")) {
       const circleDelay = paragraphDelay + 800;
@@ -38,12 +38,16 @@ function renderInlineText(text: string, inView = false, paragraphDelay = 0): Rea
     if (part.startsWith("<em>") && part.endsWith("</em>")) {
       return <em key={i}>{part.slice(4, -5)}</em>;
     }
+    if (part.startsWith("<strong>") && part.endsWith("</strong>")) {
+      return <strong key={i} className="font-semibold italic">{part.slice(8, -9)}</strong>;
+    }
     return part || null;
   });
 }
 
 const variantClass: Record<string, string> = {
   emphasis: "font-normal text-hero",
+  subtle: "text-hero",
   italic: "italic text-muted-foreground",
   body: "",
 };
