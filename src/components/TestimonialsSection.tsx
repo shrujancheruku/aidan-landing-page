@@ -8,40 +8,45 @@ import type { TestimonialsContent } from "@/types/content";
 
 function VideoPlaceholder({ name, role, src, thumbnail }: { name: string; role: string; src?: string; thumbnail?: string }) {
   const [playing, setPlaying] = React.useState(false);
+  const [videoReady, setVideoReady] = React.useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
-  const handlePlay = () => {
-    setPlaying(true);
-  };
-
-  React.useEffect(() => {
-    if (playing) {
-      videoRef.current?.play().catch(() => {});
-    }
-  }, [playing]);
+  const handlePlay = () => setPlaying(true);
 
   if (src) {
     return (
       <div className="relative w-fit max-w-full mx-auto rounded-xl overflow-hidden group bg-hero">
-        {playing ? (
+        {/* Thumbnail stays in DOM to hold container size; fades out once video is ready */}
+        {thumbnail ? (
+          <img
+            src={`/${thumbnail}`}
+            alt={name}
+            className="block max-h-[75vh] w-auto max-w-full transition-opacity duration-300"
+            style={{ opacity: videoReady ? 0 : 1 }}
+          />
+        ) : (
+          <div className="w-full aspect-video" />
+        )}
+
+        {/* Video overlaid at opacity 0, fades in on canPlay */}
+        {playing && (
           <video
             ref={videoRef}
             src={`/${src}`}
-            className="block max-h-[75vh] w-auto max-w-full"
+            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+            style={{ opacity: videoReady ? 1 : 0 }}
+            onCanPlay={() => {
+              setVideoReady(true);
+              videoRef.current?.play().catch(() => {});
+            }}
             controls
             playsInline
           />
-        ) : (
+        )}
+
+        {/* Overlay hidden once playing starts */}
+        {!playing && (
           <>
-            {thumbnail ? (
-              <img
-                src={`/${thumbnail}`}
-                alt={name}
-                className="block max-h-[75vh] w-auto max-w-full"
-              />
-            ) : (
-              <div className="w-full aspect-video" />
-            )}
             <div
               className="absolute inset-0 opacity-40 pointer-events-none"
               style={{
