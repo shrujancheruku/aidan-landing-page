@@ -79,7 +79,7 @@ export default function HeroSection({ content }: { content: HeroContent }) {
           className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-scale"
           style={{ animationDelay: "150ms" }}
         >
-          <div className="relative w-full lg:w-auto">
+          <div className="relative w-[85%] lg:w-auto">
             <div
               className="absolute -inset-2 lg:-inset-4 rounded-full opacity-20"
               style={{
@@ -87,13 +87,13 @@ export default function HeroSection({ content }: { content: HeroContent }) {
               }}
             />
             <div
-              className="relative w-full aspect-square lg:aspect-auto lg:w-[28rem] lg:h-[28rem] overflow-hidden rounded-full"
+              className="relative w-[85%] aspect-square lg:aspect-auto lg:w-[28rem] lg:h-[28rem] overflow-hidden rounded-full"
               style={{
                 boxShadow: `0 32px 64px oklch(0 0 0 / 0.4), 0 0 0 3px color-mix(in oklch, var(--color-primary) 60%, transparent)`,
               }}
             >
               <img
-                src={`${import.meta.env.BASE_URL}/profile-photo.jpg`}
+                src="/profile-photo.jpg"
                 alt="Aidan Belizaire"
                 className="w-full h-full object-cover"
                 onError={(e) => {

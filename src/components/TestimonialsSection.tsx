@@ -20,8 +20,8 @@ function VideoPlaceholder({ name, role, src, thumbnail }: { name: string; role: 
       <div className="relative w-fit max-w-full mx-auto rounded-xl overflow-hidden group bg-hero">
         <video
           ref={videoRef}
-          src={`${import.meta.env.BASE_URL}/${src}`}
-          poster={thumbnail ? `${import.meta.env.BASE_URL}/${thumbnail}` : undefined}
+          src={`/${src}`}
+          poster={thumbnail ? `/${thumbnail}` : undefined}
           className={`block max-h-[75vh] w-auto max-w-full${!playing ? " pointer-events-none" : ""}`}
           controls={playing}
           playsInline
@@ -83,7 +83,7 @@ function AvatarPlaceholder({ name, photo }: { name: string; photo?: string }) {
   if (photo) {
     return (
       <img
-        src={`${import.meta.env.BASE_URL}/${photo}`}
+        src={`/${photo}`}
         alt={name}
         className="w-24 h-24 rounded-full object-cover ring-4 ring-primary/20"
       />

@@ -5,8 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://shrujancheruku.github.io",
-  base: "/aidan-landing-page",
+  site: "https://aidanbelizaire.com",
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
