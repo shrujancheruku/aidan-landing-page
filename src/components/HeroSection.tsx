@@ -94,6 +94,8 @@ export default function HeroSection({ content }: { content: HeroContent }) {
             >
               <img
                 src="/profile-photo.jpg"
+                srcSet="/profile-photo-400.jpg 400w, /profile-photo-700.jpg 700w, /profile-photo.jpg 1320w"
+                sizes="(min-width: 1024px) 28rem, 80vw"
                 alt="Aidan Belizaire"
                 className="w-full h-full object-cover"
                 onError={(e) => {

@@ -8,19 +8,26 @@ import type { TestimonialsContent } from "@/types/content";
 
 function VideoPlaceholder({ name, role, src, thumbnail }: { name: string; role: string; src?: string; thumbnail?: string }) {
   const [playing, setPlaying] = React.useState(false);
+  const [videoSrc, setVideoSrc] = React.useState<string | undefined>(undefined);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
+    setVideoSrc(`/${src}`);
     setPlaying(true);
-    videoRef.current?.play();
   };
+
+  React.useEffect(() => {
+    if (videoSrc) {
+      videoRef.current?.play().catch(() => {});
+    }
+  }, [videoSrc]);
 
   if (src) {
     return (
       <div className="relative w-fit max-w-full mx-auto rounded-xl overflow-hidden group bg-hero">
         <video
           ref={videoRef}
-          src={`/${src}`}
+          src={videoSrc}
           poster={thumbnail ? `/${thumbnail}` : undefined}
           className={`block max-h-[75vh] w-auto max-w-full${!playing ? " pointer-events-none" : ""}`}
           controls={playing}
