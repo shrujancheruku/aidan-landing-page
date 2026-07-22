@@ -149,7 +149,7 @@ export default function TestimonialsSection({
             <div className="w-16 h-px bg-primary/60" />
             <Badge
               variant="secondary"
-              className="px-4 py-1 text-sm font-light rounded-full bg-primary/15 text-hero border border-primary/30"
+              className="h-auto px-[1.62rem] py-[0.50625rem] text-[0.8859375rem] lg:px-[2.106rem] lg:py-[0.658125rem] lg:text-[1.15171875rem] leading-none font-light rounded-full bg-primary/15 text-hero border border-primary/30"
             >
               {badge}
             </Badge>
@@ -160,7 +160,7 @@ export default function TestimonialsSection({
         {/* Video cards */}
         <div
           ref={videosRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 lg:mb-24"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 lg:mb-24"
         >
           {videos.map((video, index) => (
             <div
