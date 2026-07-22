@@ -9,11 +9,11 @@ videos:
     role: "Content Creator"
     src: "kalia-testimonial.mp4"
     thumbnail: "kalia-thumbnail.jpg"
-reviews:
   - name: "Ashleigh Arton"
     role: "Senior Sustainability Manager"
-    review: "I came into the session not really knowing what to expect, but Aidan put me at ease straight away. I loved how skilfully he helped me get clear on the situation I was trying to work through and his questions helped me explore my own thinking more deeply than I could have on my own. What sets Aidan apart is his ability to listen with real attention and curiosity, in a space that feels safe and free of judgement."
-    photo: "ashleigh-arton.jpg"
+    src: "ashleigh-testimonial.mp4"
+    thumbnail: "ashleigh-thumbnail.jpg"
+reviews:
   - name: "Vedrana Colic"
     role: "Senior Marketing Manager"
     review: "When I started coaching, I wasn't sure what my next step in life and work looked like. Aidan made me feel at ease right away. He doesn't just listen, he really hears you. His questions helped me see things I couldn't see before, strengths I didn't know I had. I left with a clear plan and more confidence than I'd had in a long time."
@@ -22,6 +22,10 @@ reviews:
     role: "Senior Software Engineer"
     review: "I really appreciated Aidan’s coaching. He asked insightful questions that encouraged me to reflect on my relationship from new angles, and I left with greater clarity and awareness. Thank you for your guidance and support Aidan."
     photo: "miriam-aparicio.jpg"
+  - name: "Jody Watts"
+    role: "Massage Therapist"
+    review: "I’ve never been coached before, but Aidan created a space where I felt incredibly comfortable. He really listened and helped me not only see things clearer but decide on what my next steps could be, helping me move forward. I was able to truly be honest with myself as he helped me confront the things I’ve been avoiding. Aidan is a soft soul and a kind and wonderful Coach, I can’t recommend him enough!"
+    photo: "jody-watts.jpg"
 cta:
   headline: "Ready to figure it out?"
   text: "Book a Free Call"
